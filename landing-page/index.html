@@ -11,26 +11,26 @@
   <!-- Chart.js for interactive visual charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Outfit (Geometric & Elegant Thin Display) + Plus Jakarta Sans (Sleek Light Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Plus+Jakarta+Sans:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
             brand: {
+              300: '#5eead4',
               400: '#2dd4bf',
               500: '#14b8a6',
-              600: '#0d9488',
-              accent: '#6366f1'
+              accent: '#818cf8'
             }
           }
         }
@@ -40,87 +40,87 @@
 
   <style>
     .glass-card {
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(11, 15, 25, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
     .glass-card-hover {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-card-hover:hover {
-      transform: translateY(-4px);
-      border-color: rgba(45, 212, 191, 0.3);
-      box-shadow: 0 20px 40px -15px rgba(13, 148, 136, 0.15);
+      transform: translateY(-3px);
+      border-color: rgba(45, 212, 191, 0.25);
+      box-shadow: 0 20px 40px -20px rgba(13, 148, 136, 0.12);
     }
     .text-gradient {
-      background: linear-gradient(135deg, #38bdf8 0%, #2dd4bf 50%, #818cf8 100%);
+      background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 40%, #2dd4bf 70%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .gradient-border {
       position: relative;
-      border-radius: 1rem;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+      border-radius: 1.25rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01));
       padding: 1px;
     }
     .pulse-glow {
-      box-shadow: 0 0 50px -10px rgba(45, 212, 191, 0.25);
+      box-shadow: 0 0 60px -15px rgba(45, 212, 191, 0.15);
     }
   </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body class="bg-[#070a12] text-slate-300 font-sans font-light tracking-normal antialiased selection:bg-brand-500 selection:text-white">
 
   <!-- Ambient Glow Background -->
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] pointer-events-none overflow-hidden z-0 opacity-40">
-    <div class="absolute top-[-100px] left-[20%] w-[500px] h-[500px] bg-brand-500/20 rounded-full blur-[120px]"></div>
-    <div class="absolute top-[-50px] right-[20%] w-[400px] h-[400px] bg-brand-accent/20 rounded-full blur-[100px]"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none overflow-hidden z-0 opacity-25">
+    <div class="absolute top-[-120px] left-[25%] w-[550px] h-[550px] bg-brand-500/20 rounded-full blur-[140px]"></div>
+    <div class="absolute top-[-80px] right-[25%] w-[450px] h-[450px] bg-brand-accent/20 rounded-full blur-[120px]"></div>
   </div>
 
   <!-- Navigation -->
-  <nav class="sticky top-0 z-50 glass-card border-b border-slate-800/80 px-6 py-4">
+  <nav class="sticky top-0 z-50 glass-card border-b border-slate-800/50 px-8 py-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-brand-accent flex items-center justify-center shadow-lg shadow-brand-500/20">
-          <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-500/80 to-brand-accent/80 flex items-center justify-center border border-white/10">
+          <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
-        <span class="font-display font-extrabold text-2xl tracking-tight text-white">JobGuard<span class="text-brand-400">.ai</span></span>
+        <span class="font-display font-light text-2xl tracking-wide text-white">JobGuard<span class="font-normal text-brand-400">.ai</span></span>
       </div>
       
-      <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-        <a href="#detector" class="hover:text-brand-400 transition-colors">Live Detector</a>
-        <a href="#pipeline" class="hover:text-brand-400 transition-colors">System Flow</a>
-        <a href="#colab-results" class="hover:text-brand-400 transition-colors">Colab Metrics</a>
-        <a href="#charts" class="hover:text-brand-400 transition-colors">Visual Analytics</a>
+      <div class="hidden md:flex items-center space-x-10 text-xs font-normal tracking-wider text-slate-400 uppercase">
+        <a href="#detector" class="hover:text-brand-300 transition-colors">Live Detector</a>
+        <a href="#pipeline" class="hover:text-brand-300 transition-colors">System Flow</a>
+        <a href="#colab-results" class="hover:text-brand-300 transition-colors">Colab Metrics</a>
+        <a href="#charts" class="hover:text-brand-300 transition-colors">Visual Analytics</a>
       </div>
 
-      <a href="#detector" class="bg-gradient-to-r from-brand-500 to-brand-400 hover:from-brand-600 hover:to-brand-500 text-slate-950 font-display font-bold text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 hover:shadow-brand-500/40 transition-all duration-200 transform hover:-translate-y-0.5">
-        Try Live Detector
+      <a href="#detector" class="bg-gradient-to-r from-brand-500/90 to-brand-400/90 hover:from-brand-500 hover:to-brand-400 text-slate-950 font-display font-medium text-xs tracking-wider uppercase px-5 py-2.5 rounded-xl transition-all duration-300 shadow-md shadow-brand-500/10">
+        Try Detector
       </a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative z-10 pt-20 pb-12 px-6 max-w-5xl mx-auto text-center">
-    <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 rounded-full px-4 py-1.5 mb-8 text-xs font-semibold text-brand-400">
-      <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-      <span>EMSCAD Dataset • 96.3% ROC-AUC • 86.4% Recall</span>
+  <section class="relative z-10 pt-24 pb-16 px-6 max-w-5xl mx-auto text-center">
+    <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-slate-800 px-4 py-1.5 rounded-full mb-8 text-xs font-light text-brand-300 tracking-wider">
+      <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+      <span>EMSCAD Dataset Architecture • 96.3% ROC-AUC • 86.4% Recall</span>
     </div>
     
-    <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-      Stop Job Scams with <br><span class="text-gradient">Intelligent Machine Learning</span>
+    <h1 class="font-display text-5xl md:text-7xl font-extralight tracking-tight text-white mb-6 leading-[1.08]">
+      Stop Job Scams with <br><span class="text-gradient font-light">Intelligent Machine Learning</span>
     </h1>
     
-    <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-normal leading-relaxed mb-10">
+    <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto font-extralight leading-relaxed mb-12">
       Analyze unstructured text descriptions alongside structured employer metadata in real time to detect fraudulent employment postings.
     </p>
 
     <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#detector" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-display font-bold px-8 py-4 rounded-xl shadow-xl shadow-brand-500/25 transition-all duration-200">
+      <a href="#detector" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-display font-medium text-sm tracking-wider uppercase px-8 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-brand-500/15">
         Run Live Detector
       </a>
-      <a href="#colab-results" class="glass-card hover:bg-slate-800/80 text-white font-medium px-8 py-4 rounded-xl border border-slate-700 transition-all duration-200">
-        View Colab Metrics & Charts
+      <a href="#colab-results" class="glass-card hover:bg-slate-900/60 text-slate-300 font-light text-sm px-8 py-3.5 rounded-xl border border-slate-800 transition-all duration-300">
+        View Colab Analytics
       </a>
     </div>
   </section>
@@ -128,62 +128,62 @@
   <!-- SECTION 1: LIVE DETECTOR SIMULATOR -->
   <section id="detector" class="relative z-10 py-12 px-6 max-w-4xl mx-auto">
     <div class="gradient-border pulse-glow">
-      <div class="bg-[#0f172a] p-8 md:p-10 rounded-2xl">
+      <div class="bg-[#0b0f19]/90 p-8 md:p-10 rounded-2xl">
         
-        <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-800">
+        <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-800/80">
           <div>
-            <h3 class="font-display text-2xl font-bold text-white">Live Job Detector Simulator</h3>
-            <p class="text-slate-400 text-sm mt-1">Test any job posting parameters directly using our trained model inference logic.</p>
+            <h3 class="font-display font-light text-2xl text-white tracking-wide">Live Job Detector Simulator</h3>
+            <p class="text-slate-400 text-xs font-extralight mt-1">Test any job posting parameters directly using our trained model inference logic.</p>
           </div>
-          <span class="hidden sm:inline-block px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-mono">Model Active • 86.4% Recall</span>
+          <span class="hidden sm:inline-block px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-300 text-xs font-mono font-light">Model Active • 86.4% Recall</span>
         </div>
 
         <div class="space-y-6">
           <div>
-            <label class="block text-xs font-display font-bold uppercase tracking-wider text-slate-300 mb-2">Job Title</label>
+            <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Job Title</label>
             <input id="title" type="text" placeholder="e.g. Data Entry Specialist — Earn $500/day Work From Home" 
-              class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-400 focus:ring-1 focus:ring-brand-400 transition-all">
+              class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white font-light placeholder-slate-600 focus:outline-none focus:border-brand-400/60 transition-all">
           </div>
 
           <div>
-            <label class="block text-xs font-display font-bold uppercase tracking-wider text-slate-300 mb-2">Job Description & Requirements</label>
+            <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Job Description & Requirements</label>
             <textarea id="desc" rows="4" placeholder="Paste full job description, requirements, or benefits..." 
-              class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-400 focus:ring-1 focus:ring-brand-400 transition-all"></textarea>
+              class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white font-light placeholder-slate-600 focus:outline-none focus:border-brand-400/60 transition-all"></textarea>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label class="block text-xs font-display font-bold uppercase tracking-wider text-slate-300 mb-2">Company Logo Uploaded?</label>
-              <select id="logo" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-400">
+              <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Company Logo Uploaded?</label>
+              <select id="logo" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 font-light focus:outline-none focus:border-brand-400/60">
                 <option value="1">Yes — Logo Present (1)</option>
                 <option value="0" selected>No — Logo Missing (0)</option>
               </select>
             </div>
 
             <div>
-              <label class="block text-xs font-display font-bold uppercase tracking-wider text-slate-300 mb-2">Screening Questions Included?</label>
-              <select id="questions" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-400">
+              <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Screening Questions Included?</label>
+              <select id="questions" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 font-light focus:outline-none focus:border-brand-400/60">
                 <option value="1">Yes — Screening Active (1)</option>
                 <option value="0" selected>No — No Questions (0)</option>
               </select>
             </div>
           </div>
 
-          <button onclick="analyzePosting()" class="w-full bg-gradient-to-r from-brand-500 to-brand-400 hover:from-brand-600 hover:to-brand-500 text-slate-950 font-display font-extrabold py-4 rounded-xl transition duration-200 shadow-lg shadow-brand-500/20 transform active:scale-[0.99]">
+          <button onclick="analyzePosting()" class="w-full bg-gradient-to-r from-brand-500 to-brand-400 hover:from-brand-500/90 hover:to-brand-400/90 text-slate-950 font-display font-medium text-xs tracking-widest uppercase py-4 rounded-xl transition duration-300 shadow-lg shadow-brand-500/15">
             Analyze Job Posting Risk
           </button>
         </div>
 
         <!-- Dynamic Result Display -->
-        <div id="result-container" class="hidden mt-8 pt-6 border-t border-slate-800">
+        <div id="result-container" class="hidden mt-8 pt-6 border-t border-slate-800/80">
           <div id="result-card" class="p-6 rounded-xl border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
               <div class="flex items-center space-x-3 mb-2">
-                <span id="risk-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></span>
-                <span id="risk-score" class="font-mono text-sm font-semibold"></span>
+                <span id="risk-badge" class="px-3 py-0.5 rounded-full text-[11px] font-mono tracking-wider"></span>
+                <span id="risk-score" class="font-mono text-xs font-light text-slate-400"></span>
               </div>
-              <h4 id="result-title" class="font-display text-lg font-bold text-white mb-1"></h4>
-              <p id="result-desc" class="text-xs text-slate-300 leading-relaxed max-w-xl"></p>
+              <h4 id="result-title" class="font-display font-light text-lg text-white mb-1"></h4>
+              <p id="result-desc" class="text-xs text-slate-400 font-extralight leading-relaxed max-w-xl"></p>
             </div>
           </div>
         </div>
@@ -195,35 +195,35 @@
   <!-- SECTION 2: SYSTEM EXECUTION & PIPELINE FLOW -->
   <section id="pipeline" class="py-16 px-6 max-w-7xl mx-auto relative z-10">
     <div class="text-center mb-12">
-      <h2 class="font-display text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Architecture Workflow</h2>
-      <p class="font-display text-3xl font-extrabold text-white">End-to-End System Processing Flow</p>
+      <h2 class="font-display text-xs font-light uppercase tracking-widest text-brand-300 mb-2">Architecture Workflow</h2>
+      <p class="font-display text-3xl font-extralight text-white">End-to-End System Processing Flow</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-      <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
-        <span class="text-xs font-mono font-bold text-brand-400 bg-slate-800/80 px-2 py-1 rounded mb-3 inline-block">Step 01</span>
-        <h3 class="font-display font-bold text-white text-sm mb-1">Drive Ingestion</h3>
-        <p class="text-xs text-slate-400">Reads 17,880 observations across all 18 raw attributes from Google Drive.</p>
+      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
+        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 01</span>
+        <h3 class="font-display font-light text-white text-sm mb-1">Drive Ingestion</h3>
+        <p class="text-xs text-slate-400 font-extralight">Reads 17,880 observations across all 18 raw attributes from Google Drive.</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
-        <span class="text-xs font-mono font-bold text-brand-400 bg-slate-800/80 px-2 py-1 rounded mb-3 inline-block">Step 02</span>
-        <h3 class="font-display font-bold text-white text-sm mb-1">Feature Engineering</h3>
-        <p class="text-xs text-slate-400">Drops <code class="text-teal-300">job_id</code>, merges 5 text fields into <code class="text-teal-300">full_text</code>, extracts flags (<code class="text-teal-300">has_salary</code>).</p>
+      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
+        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 02</span>
+        <h3 class="font-display font-light text-white text-sm mb-1">Feature Engineering</h3>
+        <p class="text-xs text-slate-400 font-extralight">Drops <code class="text-teal-300 font-mono">job_id</code>, merges 5 text fields into <code class="text-teal-300 font-mono">full_text</code>.</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
-        <span class="text-xs font-mono font-bold text-brand-400 bg-slate-800/80 px-2 py-1 rounded mb-3 inline-block">Step 03</span>
-        <h3 class="font-display font-bold text-white text-sm mb-1">NLP & Vectorization</h3>
-        <p class="text-xs text-slate-400">RegEx cleaning, lemmatization, and 3,000 unigram/bigram TF-IDF vector transformation.</p>
+      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
+        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 03</span>
+        <h3 class="font-display font-light text-white text-sm mb-1">NLP & Vectorization</h3>
+        <p class="text-xs text-slate-400 font-extralight">RegEx cleaning, lemmatization, and 3,000 unigram/bigram TF-IDF vector transformation.</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
-        <span class="text-xs font-mono font-bold text-brand-400 bg-slate-800/80 px-2 py-1 rounded mb-3 inline-block">Step 04</span>
-        <h3 class="font-display font-bold text-white text-sm mb-1">Stratified Train/Test</h3>
-        <p class="text-xs text-slate-400">80/20 train-test split preserving identical 95:5 class imbalance ratios across subsets.</p>
+      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
+        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 04</span>
+        <h3 class="font-display font-light text-white text-sm mb-1">Stratified Split</h3>
+        <p class="text-xs text-slate-400 font-extralight">80/20 train-test split preserving identical 95:5 class imbalance ratios across subsets.</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800 text-center">
-        <span class="text-xs font-mono font-bold text-brand-400 bg-slate-800/80 px-2 py-1 rounded mb-3 inline-block">Step 05</span>
-        <h3 class="font-display font-bold text-white text-sm mb-1">Weighted Inference</h3>
-        <p class="text-xs text-slate-400">Model evaluation prioritizing Recall to minimize False Negatives in live risk scores.</p>
+      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
+        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 05</span>
+        <h3 class="font-display font-light text-white text-sm mb-1">Weighted Inference</h3>
+        <p class="text-xs text-slate-400 font-extralight">Model evaluation prioritizing Recall to minimize False Negatives in live risk scores.</p>
       </div>
     </div>
   </section>
@@ -232,59 +232,59 @@
   <section id="colab-results" class="py-12 px-6 max-w-7xl mx-auto relative z-10">
     <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
-        <h2 class="font-display text-2xl font-bold text-white">Google Colab Model Results</h2>
-        <p class="text-slate-400 text-sm mt-1">Exact benchmark metrics calculated on the unseen test set (3,576 samples).</p>
+        <h2 class="font-display text-2xl font-light text-white">Google Colab Model Results</h2>
+        <p class="text-slate-400 text-xs font-extralight mt-1">Exact benchmark metrics calculated on the unseen test set (3,576 samples).</p>
       </div>
-      <div class="flex items-center space-x-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span>Selected Candidate: Logistic Regression (Class-Weighted)</span>
+      <div class="flex items-center space-x-2 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span>Candidate: Logistic Regression (Class-Weighted)</span>
       </div>
     </div>
 
-    <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
+    <div class="glass-card rounded-2xl overflow-hidden border border-slate-800/80">
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="bg-slate-900/90 border-b border-slate-800 text-xs font-mono uppercase tracking-wider text-slate-400">
-              <th class="p-4">Model Classifier</th>
-              <th class="p-4 text-center">Accuracy</th>
-              <th class="p-4 text-center">Precision</th>
-              <th class="p-4 text-center">Recall (Sensitivity)</th>
-              <th class="p-4 text-center">F1-Score</th>
-              <th class="p-4 text-center">ROC-AUC</th>
-              <th class="p-4 text-right">Status</th>
+            <tr class="bg-slate-950/80 border-b border-slate-800 text-[11px] font-mono tracking-widest text-slate-400 uppercase">
+              <th class="p-4 font-normal">Model Classifier</th>
+              <th class="p-4 text-center font-normal">Accuracy</th>
+              <th class="p-4 text-center font-normal">Precision</th>
+              <th class="p-4 text-center font-normal">Recall</th>
+              <th class="p-4 text-center font-normal">F1-Score</th>
+              <th class="p-4 text-center font-normal">ROC-AUC</th>
+              <th class="p-4 text-right font-normal">Status</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60 text-sm">
-            <tr class="hover:bg-slate-800/30 transition-colors">
-              <td class="p-4 font-semibold text-slate-200">Naive Bayes (MultinomialNB)</td>
+          <tbody class="divide-y divide-slate-800/50 text-xs font-light">
+            <tr class="hover:bg-slate-900/30 transition-colors">
+              <td class="p-4 font-normal text-slate-300">Naive Bayes (MultinomialNB)</td>
               <td class="p-4 text-center font-mono">0.9412</td>
               <td class="p-4 text-center font-mono">0.4310</td>
               <td class="p-4 text-center font-mono">0.5682</td>
               <td class="p-4 text-center font-mono">0.4902</td>
               <td class="p-4 text-center font-mono">0.8845</td>
-              <td class="p-4 text-right"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-400">Baseline</span></td>
+              <td class="p-4 text-right"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-slate-900 text-slate-400 border border-slate-800">Baseline</span></td>
             </tr>
-            <tr class="hover:bg-slate-800/30 transition-colors">
-              <td class="p-4 font-semibold text-slate-200">Random Forest Classifier</td>
-              <td class="p-4 text-center font-mono font-bold text-white">0.9785</td>
-              <td class="p-4 text-center font-mono font-bold text-white">0.9120</td>
-              <td class="p-4 text-center font-mono text-amber-400">0.6136</td>
-              <td class="p-4 text-center font-mono font-bold text-white">0.7333</td>
+            <tr class="hover:bg-slate-900/30 transition-colors">
+              <td class="p-4 font-normal text-slate-300">Random Forest Classifier</td>
+              <td class="p-4 text-center font-mono text-white">0.9785</td>
+              <td class="p-4 text-center font-mono text-white">0.9120</td>
+              <td class="p-4 text-center font-mono text-amber-300">0.6136</td>
+              <td class="p-4 text-center font-mono text-white">0.7333</td>
               <td class="p-4 text-center font-mono">0.9512</td>
-              <td class="p-4 text-right"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-950/60 text-amber-300 border border-amber-800/50">High Acc / Low Recall</span></td>
+              <td class="p-4 text-right"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-amber-950/40 text-amber-300 border border-amber-800/40">High Acc / Low Recall</span></td>
             </tr>
-            <tr class="bg-brand-500/10 hover:bg-brand-500/15 transition-colors border-l-4 border-l-brand-400">
-              <td class="p-4 font-bold text-white flex items-center space-x-2">
+            <tr class="bg-brand-500/5 hover:bg-brand-500/10 transition-colors border-l-2 border-l-brand-400">
+              <td class="p-4 font-normal text-white flex items-center space-x-2">
                 <span>Logistic Regression (Balanced)</span>
-                <span class="text-xs font-normal text-brand-400 bg-brand-500/20 px-2 py-0.5 rounded">Selected</span>
+                <span class="text-[10px] font-mono text-brand-300 bg-brand-500/20 px-2 py-0.5 rounded">Selected</span>
               </td>
               <td class="p-4 text-center font-mono">0.9520</td>
               <td class="p-4 text-center font-mono">0.5180</td>
-              <td class="p-4 text-center font-mono font-bold text-brand-400 text-base">0.8636</td>
+              <td class="p-4 text-center font-mono font-normal text-brand-300 text-sm">0.8636</td>
               <td class="p-4 text-center font-mono">0.6472</td>
-              <td class="p-4 text-center font-mono font-bold text-brand-400 text-base">0.9634</td>
-              <td class="p-4 text-right"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20">Optimal Deployment</span></td>
+              <td class="p-4 text-center font-mono font-normal text-brand-300 text-sm">0.9634</td>
+              <td class="p-4 text-right"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-brand-500/90 text-slate-950">Optimal Deployment</span></td>
             </tr>
           </tbody>
         </table>
@@ -295,22 +295,22 @@
   <!-- SECTION 4: VISUAL CHARTS & CONFUSION MATRICES -->
   <section id="charts" class="py-12 px-6 max-w-7xl mx-auto relative z-10 space-y-10">
     <div>
-      <h2 class="font-display text-2xl font-bold text-white">Visual Comparative Analytics</h2>
-      <p class="text-slate-400 text-sm mt-1">Interactive data visualizations generated from model evaluation outputs.</p>
+      <h2 class="font-display text-2xl font-light text-white">Visual Comparative Analytics</h2>
+      <p class="text-slate-400 text-xs font-extralight mt-1">Interactive data visualizations generated from model evaluation outputs.</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div class="glass-card p-6 rounded-2xl border border-slate-800">
-        <h3 class="font-display text-lg font-bold text-white mb-2">Model Metric Breakdown</h3>
-        <p class="text-xs text-slate-400 mb-6">Comparing Accuracy, Precision, Recall, F1-Score, and ROC-AUC.</p>
+      <div class="glass-card p-6 rounded-2xl border border-slate-800/80">
+        <h3 class="font-display font-light text-base text-white mb-1">Model Metric Breakdown</h3>
+        <p class="text-xs text-slate-400 font-extralight mb-6">Comparing Accuracy, Precision, Recall, F1-Score, and ROC-AUC.</p>
         <div class="h-72 w-full">
           <canvas id="multiMetricChart"></canvas>
         </div>
       </div>
 
-      <div class="glass-card p-6 rounded-2xl border border-slate-800">
-        <h3 class="font-display text-lg font-bold text-white mb-2">ROC Curve Comparison</h3>
-        <p class="text-xs text-slate-400 mb-6">Logistic Regression achieves the highest area under the curve (AUC = 0.9634).</p>
+      <div class="glass-card p-6 rounded-2xl border border-slate-800/80">
+        <h3 class="font-display font-light text-base text-white mb-1">ROC Curve Comparison</h3>
+        <p class="text-xs text-slate-400 font-extralight mb-6">Logistic Regression achieves the highest area under the curve (AUC = 0.9634).</p>
         <div class="h-72 w-full">
           <canvas id="rocChart"></canvas>
         </div>
@@ -318,74 +318,74 @@
     </div>
 
     <!-- Confusion Matrices Row -->
-    <div class="glass-card p-6 rounded-2xl border border-slate-800">
-      <h3 class="font-display text-lg font-bold text-white mb-2">Confusion Matrix Breakdown (Test Set: 3,576 Samples)</h3>
-      <p class="text-xs text-slate-400 mb-6">Comparing Caught Scam Jobs (True Positives) vs. Missed Scam Jobs (False Negatives).</p>
+    <div class="glass-card p-6 rounded-2xl border border-slate-800/80">
+      <h3 class="font-display font-light text-base text-white mb-1">Confusion Matrix Breakdown (Test Set: 3,576 Samples)</h3>
+      <p class="text-xs text-slate-400 font-extralight mb-6">Comparing Caught Scam Jobs (True Positives) vs. Missed Scam Jobs (False Negatives).</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 text-center">
-          <h4 class="font-display font-bold text-slate-300 text-sm mb-4">Naive Bayes</h4>
+        <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 text-center">
+          <h4 class="font-display font-light text-slate-300 text-sm mb-4">Naive Bayes</h4>
           <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <span class="block text-slate-400 text-[10px]">True Real (TN)</span>
-              <span class="text-base font-bold text-slate-200">3,268</span>
+            <div class="bg-slate-900/80 p-3 rounded border border-slate-800">
+              <span class="block text-slate-500 text-[10px]">True Real (TN)</span>
+              <span class="text-sm font-normal text-slate-300">3,268</span>
             </div>
-            <div class="bg-rose-950/40 p-3 rounded border border-rose-800/40">
-              <span class="block text-rose-300 text-[10px]">False Fake (FP)</span>
-              <span class="text-base font-bold text-rose-400">135</span>
+            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
+              <span class="block text-rose-400/80 text-[10px]">False Fake (FP)</span>
+              <span class="text-sm font-normal text-rose-300">135</span>
             </div>
-            <div class="bg-rose-950/40 p-3 rounded border border-rose-800/40">
-              <span class="block text-rose-300 text-[10px]">Missed Scam (FN)</span>
-              <span class="text-base font-bold text-rose-400">76</span>
+            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
+              <span class="block text-rose-400/80 text-[10px]">Missed Scam (FN)</span>
+              <span class="text-sm font-normal text-rose-300">76</span>
             </div>
-            <div class="bg-emerald-950/40 p-3 rounded border border-emerald-800/40">
-              <span class="block text-emerald-300 text-[10px]">Caught Scam (TP)</span>
-              <span class="text-base font-bold text-emerald-400">97</span>
+            <div class="bg-emerald-950/30 p-3 rounded border border-emerald-900/30">
+              <span class="block text-emerald-400/80 text-[10px]">Caught Scam (TP)</span>
+              <span class="text-sm font-normal text-emerald-300">97</span>
             </div>
           </div>
         </div>
 
-        <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 text-center">
-          <h4 class="font-display font-bold text-slate-300 text-sm mb-4">Random Forest</h4>
+        <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 text-center">
+          <h4 class="font-display font-light text-slate-300 text-sm mb-4">Random Forest</h4>
           <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <span class="block text-slate-400 text-[10px]">True Real (TN)</span>
-              <span class="text-base font-bold text-slate-200">3,393</span>
+            <div class="bg-slate-900/80 p-3 rounded border border-slate-800">
+              <span class="block text-slate-500 text-[10px]">True Real (TN)</span>
+              <span class="text-sm font-normal text-slate-300">3,393</span>
             </div>
-            <div class="bg-rose-950/40 p-3 rounded border border-rose-800/40">
-              <span class="block text-rose-300 text-[10px]">False Fake (FP)</span>
-              <span class="text-base font-bold text-rose-400">10</span>
+            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
+              <span class="block text-rose-400/80 text-[10px]">False Fake (FP)</span>
+              <span class="text-sm font-normal text-rose-300">10</span>
             </div>
-            <div class="bg-amber-950/40 p-3 rounded border border-amber-800/40">
-              <span class="block text-amber-300 text-[10px]">Missed Scam (FN)</span>
-              <span class="text-base font-bold text-amber-400">68</span>
+            <div class="bg-amber-950/30 p-3 rounded border border-amber-900/30">
+              <span class="block text-amber-400/80 text-[10px]">Missed Scam (FN)</span>
+              <span class="text-sm font-normal text-amber-300">68</span>
             </div>
-            <div class="bg-emerald-950/40 p-3 rounded border border-emerald-800/40">
-              <span class="block text-emerald-300 text-[10px]">Caught Scam (TP)</span>
-              <span class="text-base font-bold text-emerald-400">105</span>
+            <div class="bg-emerald-950/30 p-3 rounded border border-emerald-900/30">
+              <span class="block text-emerald-400/80 text-[10px]">Caught Scam (TP)</span>
+              <span class="text-sm font-normal text-emerald-300">105</span>
             </div>
           </div>
         </div>
 
-        <div class="bg-slate-900/80 p-5 rounded-xl border border-brand-500/40 text-center relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-500 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-bl">Best Recall</div>
-          <h4 class="font-display font-bold text-brand-400 text-sm mb-4">Logistic Regression (Balanced)</h4>
+        <div class="bg-slate-950/60 p-5 rounded-xl border border-brand-500/30 text-center relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-brand-500/90 text-slate-950 text-[9px] font-mono px-2 py-0.5 rounded-bl">Best Recall</div>
+          <h4 class="font-display font-light text-brand-300 text-sm mb-4">Logistic Regression</h4>
           <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-800/80 p-3 rounded border border-slate-700/50">
-              <span class="block text-slate-400 text-[10px]">True Real (TN)</span>
-              <span class="text-base font-bold text-slate-200">3,256</span>
+            <div class="bg-slate-900/80 p-3 rounded border border-slate-800">
+              <span class="block text-slate-500 text-[10px]">True Real (TN)</span>
+              <span class="text-sm font-normal text-slate-300">3,256</span>
             </div>
-            <div class="bg-rose-950/40 p-3 rounded border border-rose-800/40">
-              <span class="block text-rose-300 text-[10px]">False Fake (FP)</span>
-              <span class="text-base font-bold text-rose-400">147</span>
+            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
+              <span class="block text-rose-400/80 text-[10px]">False Fake (FP)</span>
+              <span class="text-sm font-normal text-rose-300">147</span>
             </div>
-            <div class="bg-emerald-950/60 p-3 rounded border border-emerald-600/60">
-              <span class="block text-emerald-300 text-[10px]">Missed Scam (FN)</span>
-              <span class="text-base font-bold text-emerald-300">24 (Lowest Risk)</span>
+            <div class="bg-emerald-950/40 p-3 rounded border border-emerald-800/40">
+              <span class="block text-emerald-400/80 text-[10px]">Missed Scam (FN)</span>
+              <span class="text-sm font-normal text-emerald-300">24 (Lowest)</span>
             </div>
-            <div class="bg-emerald-950/80 p-3 rounded border border-emerald-500/80">
-              <span class="block text-emerald-300 text-[10px]">Caught Scam (TP)</span>
-              <span class="text-base font-bold text-emerald-400">149</span>
+            <div class="bg-emerald-950/60 p-3 rounded border border-emerald-700/60">
+              <span class="block text-emerald-400/80 text-[10px]">Caught Scam (TP)</span>
+              <span class="text-sm font-normal text-emerald-300">149</span>
             </div>
           </div>
         </div>
@@ -416,15 +416,15 @@
                            desc.includes("wire transfer") || desc.includes("starter kit") || desc.includes("bank account") || desc.includes("no experience");
 
       if (isScamPattern) {
-        card.className = "p-6 rounded-xl border bg-rose-950/40 border-rose-800/80 text-rose-200";
-        badge.className = "px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-900/80 text-rose-300 border border-rose-700";
+        card.className = "p-6 rounded-xl border bg-rose-950/20 border-rose-800/50 text-rose-200";
+        badge.className = "px-3 py-0.5 rounded-full text-[11px] font-mono uppercase bg-rose-900/50 text-rose-300 border border-rose-700/50";
         badge.innerText = "High Risk Fraud";
         score.innerText = "Risk Score: 94.2%";
         resTitle.innerText = "⚠️ Fraudulent Posting Detected";
         resDesc.innerText = "Model flags include missing employer logo, absence of candidate screening questions, and high-frequency scam n-grams in description parameters.";
       } else {
-        card.className = "p-6 rounded-xl border bg-emerald-950/40 border-emerald-800/80 text-emerald-200";
-        badge.className = "px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-900/80 text-emerald-300 border border-emerald-700";
+        card.className = "p-6 rounded-xl border bg-emerald-950/20 border-emerald-800/50 text-emerald-200";
+        badge.className = "px-3 py-0.5 rounded-full text-[11px] font-mono uppercase bg-emerald-900/50 text-emerald-300 border border-emerald-700/50";
         badge.innerText = "Verified Safe";
         score.innerText = "Risk Score: 3.1%";
         resTitle.innerText = "✅ Legitimate Job Posting";
@@ -441,22 +441,22 @@
           {
             label: 'Naive Bayes',
             data: [0.9412, 0.4310, 0.5682, 0.4902, 0.8845],
-            backgroundColor: 'rgba(148, 163, 184, 0.5)',
-            borderColor: 'rgba(148, 163, 184, 1)',
+            backgroundColor: 'rgba(148, 163, 184, 0.3)',
+            borderColor: 'rgba(148, 163, 184, 0.8)',
             borderWidth: 1
           },
           {
             label: 'Random Forest',
             data: [0.9785, 0.9120, 0.6136, 0.7333, 0.9512],
-            backgroundColor: 'rgba(245, 158, 11, 0.5)',
-            borderColor: 'rgba(245, 158, 11, 1)',
+            backgroundColor: 'rgba(245, 158, 11, 0.3)',
+            borderColor: 'rgba(245, 158, 11, 0.8)',
             borderWidth: 1
           },
           {
-            label: 'Logistic Regression (Balanced)',
+            label: 'Logistic Regression',
             data: [0.9520, 0.5180, 0.8636, 0.6472, 0.9634],
-            backgroundColor: 'rgba(45, 212, 191, 0.7)',
-            borderColor: 'rgba(45, 212, 191, 1)',
+            backgroundColor: 'rgba(45, 212, 191, 0.5)',
+            borderColor: 'rgba(45, 212, 191, 0.9)',
             borderWidth: 1
           }
         ]
@@ -465,10 +465,10 @@
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: { beginAtZero: true, max: 1.0, grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
-          x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+          y: { beginAtZero: true, max: 1.0, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans', size: 10 } } },
+          x: { grid: { display: false }, ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans', size: 10 } } }
         },
-        plugins: { legend: { labels: { color: '#f8fafc', font: { family: 'Inter', size: 11 } } } }
+        plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 11, weight: '300' } } } }
       }
     });
 
@@ -482,7 +482,8 @@
             label: 'Logistic Regression (AUC = 0.963)',
             data: [0.0, 0.72, 0.86, 0.91, 0.94, 0.96, 0.97, 0.98, 0.99, 1.0, 1.0],
             borderColor: '#2dd4bf',
-            backgroundColor: 'rgba(45, 212, 191, 0.1)',
+            backgroundColor: 'rgba(45, 212, 191, 0.05)',
+            borderWidth: 1.5,
             fill: true,
             tension: 0.3
           },
@@ -490,14 +491,16 @@
             label: 'Random Forest (AUC = 0.951)',
             data: [0.0, 0.65, 0.78, 0.85, 0.90, 0.93, 0.95, 0.97, 0.98, 0.99, 1.0],
             borderColor: '#f59e0b',
-            borderDash: [5, 5],
+            borderWidth: 1,
+            borderDash: [4, 4],
             fill: false,
             tension: 0.3
           },
           {
-            label: 'Random Baseline (AUC = 0.500)',
+            label: 'Baseline (AUC = 0.500)',
             data: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            borderColor: '#64748b',
+            borderColor: '#334155',
+            borderWidth: 1,
             borderDash: [2, 2],
             fill: false
           }
@@ -507,10 +510,10 @@
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: { title: { display: true, text: 'True Positive Rate (Recall)', color: '#94a3b8' }, grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
-          x: { title: { display: true, text: 'False Positive Rate', color: '#94a3b8' }, grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
+          y: { title: { display: true, text: 'True Positive Rate', color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } },
+          x: { title: { display: true, text: 'False Positive Rate', color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } }
         },
-        plugins: { legend: { labels: { color: '#f8fafc', font: { family: 'Inter', size: 11 } } } }
+        plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 11, weight: '300' } } } }
       }
     });
   </script>
