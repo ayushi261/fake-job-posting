@@ -10,7 +10,7 @@ An end-to-end Machine Learning and Natural Language Processing (NLP) system desi
 
 ##  Quick Links & Live Landing Page
 
-* ** Live Landing Page & Detector Tool:** [https://ayushi261.github.io/fake-job-posting/landing-page/](https://ayushi261.github.io/fake-job-posting/landing-page/)
+* ** Live Landing Page & Detector Tool:** [https://ayushi261.github.io/fake-job-posting/landing-page/](https://ayushi261.github.io/fake-job-posting/)
 * ** Google Colab Notebook:** [`notebooks/fakejobposting.ipynb`](./notebooks/)
 * ** Written Technical Report:** [`docs/Fake_Job_Posting_Detection_Report.docx`](./docs/)
 * ** Video Demonstration:** [Link to Loom / YouTube Video]
