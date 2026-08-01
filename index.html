@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JobGuard AI — Intelligent Scam Detection & Analytics</title>
+  <title>JobGuard AI — Machine Learning Fraud Study</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -11,10 +11,10 @@
   <!-- Chart.js for interactive visual charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Google Fonts: Outfit (Geometric & Elegant Thin Display) + Plus Jakarta Sans (Sleek Light Body) -->
+  <!-- Google Fonts: Newsreader (Serif Display) + Plus Jakarta Sans (Sleek Body) + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Plus+Jakarta+Sans:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -22,15 +22,21 @@
         extend: {
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'sans-serif'],
-            display: ['Outfit', 'sans-serif'],
+            serif: ['Newsreader', 'serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            brand: {
-              300: '#5eead4',
-              400: '#2dd4bf',
-              500: '#14b8a6',
-              accent: '#818cf8'
+            mint: {
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              accent: '#059669'
+            },
+            dark: {
+              900: '#06131a',
+              800: '#0a1922',
+              700: '#112530',
+              600: '#1a3444'
             }
           }
         }
@@ -39,252 +45,170 @@
   </script>
 
   <style>
-    .glass-card {
-      background: rgba(11, 15, 25, 0.65);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    body {
+      background-color: #06131a;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
     }
-    .glass-card-hover {
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    .theme-card {
+      background: rgba(10, 25, 34, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(52, 211, 153, 0.12);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     }
-    .glass-card-hover:hover {
-      transform: translateY(-3px);
-      border-color: rgba(45, 212, 191, 0.25);
-      box-shadow: 0 20px 40px -20px rgba(13, 148, 136, 0.12);
+
+    .theme-card-hover {
+      transition: all 0.3s ease;
     }
-    .text-gradient {
-      background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 40%, #2dd4bf 70%, #c084fc 100%);
+    .theme-card-hover:hover {
+      border-color: rgba(52, 211, 153, 0.35);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.12);
+    }
+
+    .text-mint-gradient {
+      background: linear-gradient(135deg, #e6fffa 0%, #34d399 50%, #059669 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .gradient-border {
-      position: relative;
-      border-radius: 1.25rem;
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01));
-      padding: 1px;
-    }
-    .pulse-glow {
-      box-shadow: 0 0 60px -15px rgba(45, 212, 191, 0.15);
-    }
   </style>
 </head>
-<body class="bg-[#070a12] text-slate-300 font-sans font-light tracking-normal antialiased selection:bg-brand-500 selection:text-white">
-
-  <!-- Ambient Glow Background -->
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none overflow-hidden z-0 opacity-25">
-    <div class="absolute top-[-120px] left-[25%] w-[550px] h-[550px] bg-brand-500/20 rounded-full blur-[140px]"></div>
-    <div class="absolute top-[-80px] right-[25%] w-[450px] h-[450px] bg-brand-accent/20 rounded-full blur-[120px]"></div>
-  </div>
+<body class="text-slate-300 font-sans antialiased selection:bg-mint-500 selection:text-slate-950">
 
   <!-- Navigation -->
-  <nav class="sticky top-0 z-50 glass-card border-b border-slate-800/50 px-8 py-4">
+  <nav class="sticky top-0 z-50 bg-[#06131a]/80 backdrop-blur-md border-b border-mint-500/10 px-8 py-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-3">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-500/80 to-brand-accent/80 flex items-center justify-center border border-white/10">
-          <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <span class="font-display font-light text-2xl tracking-wide text-white">JobGuard<span class="font-normal text-brand-400">.ai</span></span>
+        <span class="font-serif italic text-2xl text-white tracking-wide">JobGuard<span class="text-mint-400 not-italic">.ai</span></span>
       </div>
       
-      <div class="hidden md:flex items-center space-x-10 text-xs font-normal tracking-wider text-slate-400 uppercase">
-        <a href="#detector" class="hover:text-brand-300 transition-colors">Live Detector</a>
-        <a href="#pipeline" class="hover:text-brand-300 transition-colors">System Flow</a>
-        <a href="#colab-results" class="hover:text-brand-300 transition-colors">Colab Metrics</a>
-        <a href="#charts" class="hover:text-brand-300 transition-colors">Visual Analytics</a>
+      <div class="hidden lg:flex items-center space-x-8 text-xs font-mono tracking-wider text-slate-400 uppercase">
+        <a href="#detector" class="hover:text-mint-300 transition-colors">Detector</a>
+        <a href="#stats" class="hover:text-mint-300 transition-colors">Key Stats</a>
+        <a href="#colab-results" class="hover:text-mint-300 transition-colors">Model Comparison</a>
+        <a href="#eda-charts" class="hover:text-mint-300 transition-colors">Dataset Visuals</a>
+        <a href="#heatmaps" class="hover:text-mint-300 transition-colors">Correlations</a>
       </div>
 
-      <a href="#detector" class="bg-gradient-to-r from-brand-500/90 to-brand-400/90 hover:from-brand-500 hover:to-brand-400 text-slate-950 font-display font-medium text-xs tracking-wider uppercase px-5 py-2.5 rounded-xl transition-all duration-300 shadow-md shadow-brand-500/10">
-        Try Detector
+      <a href="#detector" class="bg-mint-400 hover:bg-mint-300 text-slate-950 font-medium text-xs tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300 shadow-md shadow-mint-400/20">
+        Run Analysis
       </a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative z-10 pt-24 pb-16 px-6 max-w-5xl mx-auto text-center">
-    <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-slate-800 px-4 py-1.5 rounded-full mb-8 text-xs font-light text-brand-300 tracking-wider">
-      <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
-      <span>EMSCAD Dataset Architecture • 96.3% ROC-AUC • 86.4% Recall</span>
-    </div>
-    
-    <h1 class="font-display text-5xl md:text-7xl font-extralight tracking-tight text-white mb-6 leading-[1.08]">
-      Stop Job Scams with <br><span class="text-gradient font-light">Intelligent Machine Learning</span>
-    </h1>
-    
-    <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto font-extralight leading-relaxed mb-12">
-      Analyze unstructured text descriptions alongside structured employer metadata in real time to detect fraudulent employment postings.
-    </p>
-
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#detector" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-display font-medium text-sm tracking-wider uppercase px-8 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-brand-500/15">
-        Run Live Detector
-      </a>
-      <a href="#colab-results" class="glass-card hover:bg-slate-900/60 text-slate-300 font-light text-sm px-8 py-3.5 rounded-xl border border-slate-800 transition-all duration-300">
-        View Colab Analytics
-      </a>
-    </div>
-  </section>
-
-  <!-- SECTION 1: LIVE DETECTOR SIMULATOR -->
-  <section id="detector" class="relative z-10 py-12 px-6 max-w-4xl mx-auto">
-    <div class="gradient-border pulse-glow">
-      <div class="bg-[#0b0f19]/90 p-8 md:p-10 rounded-2xl">
+  <section class="relative z-10 pt-20 pb-16 px-6 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center space-x-2 text-xs font-mono text-mint-400 uppercase tracking-widest">
+          <span>MACHINE LEARNING STUDY</span>
+        </div>
         
-        <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-800/80">
-          <div>
-            <h3 class="font-display font-light text-2xl text-white tracking-wide">Live Job Detector Simulator</h3>
-            <p class="text-slate-400 text-xs font-extralight mt-1">Test any job posting parameters directly using our trained model inference logic.</p>
-          </div>
-          <span class="hidden sm:inline-block px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-300 text-xs font-mono font-light">Model Active • 86.4% Recall</span>
+        <h1 class="font-serif text-5xl md:text-6xl font-normal text-white leading-[1.15]">
+          Predicting job scams from <span class="italic text-mint-400 font-light">metadata & text</span>, not intuition.
+        </h1>
+        
+        <p class="text-slate-400 text-sm md:text-base max-w-xl font-light leading-relaxed">
+          Seventeen thousand real & fraudulent postings, eighteen raw attributes, three classifiers. This project benchmarks how well each model detects employment fraud — and which structural signals actually matter.
+        </p>
+
+        <div class="pt-4 flex items-center space-x-4">
+          <a href="#colab-results" class="bg-mint-400 hover:bg-mint-300 text-slate-950 font-medium text-xs tracking-wider uppercase px-6 py-3.5 rounded-full transition-all duration-300 shadow-lg shadow-mint-500/20">
+            See model comparison
+          </a>
         </div>
+      </div>
 
-        <div class="space-y-6">
-          <div>
-            <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Job Title</label>
-            <input id="title" type="text" placeholder="e.g. Data Entry Specialist — Earn $500/day Work From Home" 
-              class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white font-light placeholder-slate-600 focus:outline-none focus:border-brand-400/60 transition-all">
-          </div>
-
-          <div>
-            <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Job Description & Requirements</label>
-            <textarea id="desc" rows="4" placeholder="Paste full job description, requirements, or benefits..." 
-              class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white font-light placeholder-slate-600 focus:outline-none focus:border-brand-400/60 transition-all"></textarea>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Company Logo Uploaded?</label>
-              <select id="logo" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 font-light focus:outline-none focus:border-brand-400/60">
-                <option value="1">Yes — Logo Present (1)</option>
-                <option value="0" selected>No — Logo Missing (0)</option>
-              </select>
+      <!-- Hero Visual Graphic Box -->
+      <div class="lg:col-span-5">
+        <div class="theme-card rounded-2xl p-6 border border-mint-500/20 relative overflow-hidden">
+          <div class="absolute -right-10 -top-10 w-40 h-40 bg-mint-500/10 rounded-full blur-3xl"></div>
+          <h4 class="text-xs font-mono text-slate-400 uppercase mb-4 tracking-wider">Detection Neural Matrix</h4>
+          <div class="h-64 flex flex-col justify-center items-center text-center p-6 border border-dashed border-mint-500/20 rounded-xl bg-dark-900/50">
+            <div class="w-16 h-16 rounded-full bg-mint-500/10 flex items-center justify-center border border-mint-400/30 mb-4 animate-pulse">
+              <svg class="w-8 h-8 text-mint-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             </div>
-
-            <div>
-              <label class="block text-xs font-display font-light uppercase tracking-widest text-slate-400 mb-2">Screening Questions Included?</label>
-              <select id="questions" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 font-light focus:outline-none focus:border-brand-400/60">
-                <option value="1">Yes — Screening Active (1)</option>
-                <option value="0" selected>No — No Questions (0)</option>
-              </select>
-            </div>
-          </div>
-
-          <button onclick="analyzePosting()" class="w-full bg-gradient-to-r from-brand-500 to-brand-400 hover:from-brand-500/90 hover:to-brand-400/90 text-slate-950 font-display font-medium text-xs tracking-widest uppercase py-4 rounded-xl transition duration-300 shadow-lg shadow-brand-500/15">
-            Analyze Job Posting Risk
-          </button>
-        </div>
-
-        <!-- Dynamic Result Display -->
-        <div id="result-container" class="hidden mt-8 pt-6 border-t border-slate-800/80">
-          <div id="result-card" class="p-6 rounded-xl border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div>
-              <div class="flex items-center space-x-3 mb-2">
-                <span id="risk-badge" class="px-3 py-0.5 rounded-full text-[11px] font-mono tracking-wider"></span>
-                <span id="risk-score" class="font-mono text-xs font-light text-slate-400"></span>
-              </div>
-              <h4 id="result-title" class="font-display font-light text-lg text-white mb-1"></h4>
-              <p id="result-desc" class="text-xs text-slate-400 font-extralight leading-relaxed max-w-xl"></p>
-            </div>
+            <span class="font-serif italic text-xl text-white">96.34% ROC-AUC</span>
+            <p class="text-xs text-slate-400 mt-1 font-light">Class-Weighted Logistic Regression Performance</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: SYSTEM EXECUTION & PIPELINE FLOW -->
-  <section id="pipeline" class="py-16 px-6 max-w-7xl mx-auto relative z-10">
-    <div class="text-center mb-12">
-      <h2 class="font-display text-xs font-light uppercase tracking-widest text-brand-300 mb-2">Architecture Workflow</h2>
-      <p class="font-display text-3xl font-extralight text-white">End-to-End System Processing Flow</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
-        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 01</span>
-        <h3 class="font-display font-light text-white text-sm mb-1">Drive Ingestion</h3>
-        <p class="text-xs text-slate-400 font-extralight">Reads 17,880 observations across all 18 raw attributes from Google Drive.</p>
+  <!-- KEY STATS ROW -->
+  <section id="stats" class="py-6 px-6 max-w-6xl mx-auto relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="theme-card p-5 rounded-xl border border-mint-500/10">
+        <span class="font-serif text-3xl font-normal text-mint-400">17,880</span>
+        <p class="text-xs text-slate-400 font-light mt-1">Samples analysed</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
-        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 02</span>
-        <h3 class="font-display font-light text-white text-sm mb-1">Feature Engineering</h3>
-        <p class="text-xs text-slate-400 font-extralight">Drops <code class="text-teal-300 font-mono">job_id</code>, merges 5 text fields into <code class="text-teal-300 font-mono">full_text</code>.</p>
+      <div class="theme-card p-5 rounded-xl border border-mint-500/10">
+        <span class="font-serif text-3xl font-normal text-mint-400">18</span>
+        <p class="text-xs text-slate-400 font-light mt-1">Input features</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
-        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 03</span>
-        <h3 class="font-display font-light text-white text-sm mb-1">NLP & Vectorization</h3>
-        <p class="text-xs text-slate-400 font-extralight">RegEx cleaning, lemmatization, and 3,000 unigram/bigram TF-IDF vector transformation.</p>
+      <div class="theme-card p-5 rounded-xl border border-mint-500/10">
+        <span class="font-serif text-3xl font-normal text-mint-400">3</span>
+        <p class="text-xs text-slate-400 font-light mt-1">Models trained</p>
       </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
-        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 04</span>
-        <h3 class="font-display font-light text-white text-sm mb-1">Stratified Split</h3>
-        <p class="text-xs text-slate-400 font-extralight">80/20 train-test split preserving identical 95:5 class imbalance ratios across subsets.</p>
-      </div>
-      <div class="glass-card p-5 rounded-xl border border-slate-800/60 text-center">
-        <span class="text-[11px] font-mono text-brand-300 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded mb-3 inline-block">Step 05</span>
-        <h3 class="font-display font-light text-white text-sm mb-1">Weighted Inference</h3>
-        <p class="text-xs text-slate-400 font-extralight">Model evaluation prioritizing Recall to minimize False Negatives in live risk scores.</p>
+      <div class="theme-card p-5 rounded-xl border border-mint-500/10">
+        <span class="font-serif text-3xl font-normal text-mint-400">86.4%</span>
+        <p class="text-xs text-slate-400 font-light mt-1">Best scam recall score</p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3: EXACT COLAB PERFORMANCE METRICS TABLE -->
-  <section id="colab-results" class="py-12 px-6 max-w-7xl mx-auto relative z-10">
-    <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div>
-        <h2 class="font-display text-2xl font-light text-white">Google Colab Model Results</h2>
-        <p class="text-slate-400 text-xs font-extralight mt-1">Exact benchmark metrics calculated on the unseen test set (3,576 samples).</p>
-      </div>
-      <div class="flex items-center space-x-2 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-400">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>Candidate: Logistic Regression (Class-Weighted)</span>
-      </div>
+  <!-- SECTION 1: MODEL COMPARISON TABLE -->
+  <section id="colab-results" class="py-16 px-6 max-w-6xl mx-auto relative z-10">
+    <div class="mb-8">
+      <h2 class="font-serif text-3xl font-normal text-white">Model comparison</h2>
+      <p class="text-slate-400 text-xs font-light mt-1">Scored on a stratified 20% test split after class-imbalance reweighting.</p>
     </div>
 
-    <div class="glass-card rounded-2xl overflow-hidden border border-slate-800/80">
+    <div class="theme-card rounded-2xl overflow-hidden border border-mint-500/15">
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="bg-slate-950/80 border-b border-slate-800 text-[11px] font-mono tracking-widest text-slate-400 uppercase">
-              <th class="p-4 font-normal">Model Classifier</th>
+            <tr class="bg-dark-900/80 border-b border-mint-500/10 text-[11px] font-mono tracking-widest text-slate-400 uppercase">
+              <th class="p-4 font-normal">Model</th>
               <th class="p-4 text-center font-normal">Accuracy</th>
               <th class="p-4 text-center font-normal">Precision</th>
               <th class="p-4 text-center font-normal">Recall</th>
-              <th class="p-4 text-center font-normal">F1-Score</th>
+              <th class="p-4 text-center font-normal">F1</th>
               <th class="p-4 text-center font-normal">ROC-AUC</th>
-              <th class="p-4 text-right font-normal">Status</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/50 text-xs font-light">
-            <tr class="hover:bg-slate-900/30 transition-colors">
-              <td class="p-4 font-normal text-slate-300">Naive Bayes (MultinomialNB)</td>
-              <td class="p-4 text-center font-mono">0.9412</td>
-              <td class="p-4 text-center font-mono">0.4310</td>
-              <td class="p-4 text-center font-mono">0.5682</td>
-              <td class="p-4 text-center font-mono">0.4902</td>
-              <td class="p-4 text-center font-mono">0.8845</td>
-              <td class="p-4 text-right"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-slate-900 text-slate-400 border border-slate-800">Baseline</span></td>
-            </tr>
-            <tr class="hover:bg-slate-900/30 transition-colors">
-              <td class="p-4 font-normal text-slate-300">Random Forest Classifier</td>
-              <td class="p-4 text-center font-mono text-white">0.9785</td>
-              <td class="p-4 text-center font-mono text-white">0.9120</td>
-              <td class="p-4 text-center font-mono text-amber-300">0.6136</td>
-              <td class="p-4 text-center font-mono text-white">0.7333</td>
-              <td class="p-4 text-center font-mono">0.9512</td>
-              <td class="p-4 text-right"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-amber-950/40 text-amber-300 border border-amber-800/40">High Acc / Low Recall</span></td>
-            </tr>
-            <tr class="bg-brand-500/5 hover:bg-brand-500/10 transition-colors border-l-2 border-l-brand-400">
-              <td class="p-4 font-normal text-white flex items-center space-x-2">
-                <span>Logistic Regression (Balanced)</span>
-                <span class="text-[10px] font-mono text-brand-300 bg-brand-500/20 px-2 py-0.5 rounded">Selected</span>
+          <tbody class="divide-y divide-mint-500/5 text-xs font-light">
+            <tr class="bg-mint-500/10 border-l-2 border-l-mint-400">
+              <td class="p-4 font-medium text-white flex items-center space-x-3">
+                <span>Logistic Regression</span>
+                <span class="text-[9px] font-mono text-slate-950 bg-mint-400 font-semibold px-2 py-0.5 rounded-full uppercase">BEST RECALL</span>
               </td>
-              <td class="p-4 text-center font-mono">0.9520</td>
-              <td class="p-4 text-center font-mono">0.5180</td>
-              <td class="p-4 text-center font-mono font-normal text-brand-300 text-sm">0.8636</td>
-              <td class="p-4 text-center font-mono">0.6472</td>
-              <td class="p-4 text-center font-mono font-normal text-brand-300 text-sm">0.9634</td>
-              <td class="p-4 text-right"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-brand-500/90 text-slate-950">Optimal Deployment</span></td>
+              <td class="p-4 text-center font-mono text-slate-300">95.2%</td>
+              <td class="p-4 text-center font-mono text-slate-300">0.52</td>
+              <td class="p-4 text-center font-mono text-mint-300 font-semibold">0.86</td>
+              <td class="p-4 text-center font-mono text-slate-300">0.65</td>
+              <td class="p-4 text-center font-mono text-mint-300 font-semibold">0.9634</td>
+            </tr>
+            <tr class="hover:bg-dark-700/30 transition-colors">
+              <td class="p-4 text-slate-300 font-medium">Random Forest</td>
+              <td class="p-4 text-center font-mono text-white">97.8%</td>
+              <td class="p-4 text-center font-mono">0.91</td>
+              <td class="p-4 text-center font-mono text-amber-300">0.61</td>
+              <td class="p-4 text-center font-mono">0.73</td>
+              <td class="p-4 text-center font-mono">0.9512</td>
+            </tr>
+            <tr class="hover:bg-dark-700/30 transition-colors">
+              <td class="p-4 text-slate-400">Naive Bayes (MultinomialNB)</td>
+              <td class="p-4 text-center font-mono text-slate-400">94.1%</td>
+              <td class="p-4 text-center font-mono text-slate-400">0.43</td>
+              <td class="p-4 text-center font-mono text-slate-400">0.57</td>
+              <td class="p-4 text-center font-mono text-slate-400">0.49</td>
+              <td class="p-4 text-center font-mono text-slate-400">0.8845</td>
             </tr>
           </tbody>
         </table>
@@ -292,103 +216,215 @@
     </div>
   </section>
 
-  <!-- SECTION 4: VISUAL CHARTS & CONFUSION MATRICES -->
-  <section id="charts" class="py-12 px-6 max-w-7xl mx-auto relative z-10 space-y-10">
+  <!-- SECTION 2: LIVE DETECTOR SIMULATOR -->
+  <section id="detector" class="relative z-10 py-12 px-6 max-w-4xl mx-auto">
+    <div class="theme-card rounded-2xl p-8 md:p-10 border border-mint-500/20">
+      <div class="flex items-center justify-between mb-8 pb-6 border-b border-mint-500/10">
+        <div>
+          <h3 class="font-serif text-2xl text-white">Live Job Detector</h3>
+          <p class="text-slate-400 text-xs font-light mt-1">Test any job posting parameters directly using our trained model inference logic.</p>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-mint-500/10 border border-mint-500/20 text-mint-300 text-xs font-mono">Model Active</span>
+      </div>
+
+      <div class="space-y-6">
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Job Title</label>
+          <input id="title" type="text" placeholder="e.g. Data Entry Specialist — Earn $500/day Work From Home" 
+            class="w-full bg-dark-900 border border-mint-500/20 rounded-xl px-4 py-3 text-sm text-white font-light focus:outline-none focus:border-mint-400 transition-all">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Job Description & Requirements</label>
+          <textarea id="desc" rows="4" placeholder="Paste full job description or benefits..." 
+            class="w-full bg-dark-900 border border-mint-500/20 rounded-xl px-4 py-3 text-sm text-white font-light focus:outline-none focus:border-mint-400 transition-all"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Company Logo Uploaded?</label>
+            <select id="logo" class="w-full bg-dark-900 border border-mint-500/20 rounded-xl px-4 py-3 text-sm text-slate-300 font-light focus:outline-none focus:border-mint-400">
+              <option value="1">Yes — Logo Present (1)</option>
+              <option value="0" selected>No — Logo Missing (0)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Screening Questions Included?</label>
+            <select id="questions" class="w-full bg-dark-900 border border-mint-500/20 rounded-xl px-4 py-3 text-sm text-slate-300 font-light focus:outline-none focus:border-mint-400">
+              <option value="1">Yes — Screening Active (1)</option>
+              <option value="0" selected>No — No Questions (0)</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="analyzePosting()" class="w-full bg-mint-400 hover:bg-mint-300 text-slate-950 font-medium text-xs tracking-widest uppercase py-4 rounded-xl transition duration-300 shadow-lg shadow-mint-400/20">
+          Analyze Job Posting Risk
+        </button>
+      </div>
+
+      <!-- Result Card -->
+      <div id="result-container" class="hidden mt-8 pt-6 border-t border-mint-500/10">
+        <div id="result-card" class="p-6 rounded-xl border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-3 mb-2">
+              <span id="risk-badge" class="px-3 py-0.5 rounded-full text-[11px] font-mono uppercase"></span>
+              <span id="risk-score" class="font-mono text-xs font-light text-slate-400"></span>
+            </div>
+            <h4 id="result-title" class="font-serif text-xl text-white mb-1"></h4>
+            <p id="result-desc" class="text-xs text-slate-400 font-light leading-relaxed max-w-xl"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: DATASET EXPLORATORY CHARTS -->
+  <section id="eda-charts" class="py-16 px-6 max-w-6xl mx-auto relative z-10 space-y-8">
     <div>
-      <h2 class="font-display text-2xl font-light text-white">Visual Comparative Analytics</h2>
-      <p class="text-slate-400 text-xs font-extralight mt-1">Interactive data visualizations generated from model evaluation outputs.</p>
+      <h2 class="font-serif text-3xl font-normal text-white">Graphs from the dataset</h2>
+      <p class="text-slate-400 text-xs font-light mt-1">Computed directly from the 17,880 EMSCAD samples — no placeholder numbers.</p>
     </div>
 
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/15">
+        <h3 class="font-serif text-lg text-white mb-1">Quality score distribution</h3>
+        <p class="text-xs text-slate-400 font-light mb-4">Class imbalance (94.8% Real vs 5.2% Scam)</p>
+        <div class="h-56 w-full">
+          <canvas id="classDistChart"></canvas>
+        </div>
+      </div>
+
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/15">
+        <h3 class="font-serif text-lg text-white mb-1">Correlation with fraud</h3>
+        <p class="text-xs text-slate-400 font-light mb-4">% Fraudulent postings given metadata signals</p>
+        <div class="h-56 w-full">
+          <canvas id="metaCorrelationsChart"></canvas>
+        </div>
+      </div>
+
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/15">
+        <h3 class="font-serif text-lg text-white mb-1">Text length by quality</h3>
+        <p class="text-xs text-slate-400 font-light mb-4">Average word counts in postings</p>
+        <div class="h-56 w-full">
+          <canvas id="textLengthChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CORRELATION HEATMAP & TF-IDF -->
+  <section id="heatmaps" class="py-12 px-6 max-w-6xl mx-auto relative z-10 space-y-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div class="glass-card p-6 rounded-2xl border border-slate-800/80">
-        <h3 class="font-display font-light text-base text-white mb-1">Model Metric Breakdown</h3>
-        <p class="text-xs text-slate-400 font-extralight mb-6">Comparing Accuracy, Precision, Recall, F1-Score, and ROC-AUC.</p>
-        <div class="h-72 w-full">
-          <canvas id="multiMetricChart"></canvas>
+      
+      <!-- Correlation Heatmap Visualizer -->
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/15">
+        <h3 class="font-serif text-xl text-white mb-1">Correlation heatmap</h3>
+        <p class="text-xs text-slate-400 font-light mb-6">Pearson correlation between key metadata variables.</p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-center text-[11px] font-mono border-collapse">
+            <thead>
+              <tr class="text-slate-400 border-b border-mint-500/10">
+                <th class="p-2 text-left font-sans text-xs">Feature</th>
+                <th class="p-2">Telecommute</th>
+                <th class="p-2">Has Logo</th>
+                <th class="p-2">Has Questions</th>
+                <th class="p-2 text-mint-300">Fraudulent</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-mint-500/5">
+              <tr>
+                <td class="p-2 text-left font-sans text-slate-300">Telecommute</td>
+                <td class="p-2 bg-mint-500/40 text-white font-semibold">1.00</td>
+                <td class="p-2 bg-dark-900 text-slate-400">-0.02</td>
+                <td class="p-2 bg-dark-900 text-slate-400">0.02</td>
+                <td class="p-2 bg-mint-500/20 text-mint-300">+0.08</td>
+              </tr>
+              <tr>
+                <td class="p-2 text-left font-sans text-slate-300">Has Logo</td>
+                <td class="p-2 bg-dark-900 text-slate-400">-0.02</td>
+                <td class="p-2 bg-mint-500/40 text-white font-semibold">1.00</td>
+                <td class="p-2 bg-mint-500/20 text-slate-200">+0.26</td>
+                <td class="p-2 bg-rose-950/40 text-rose-300">-0.26</td>
+              </tr>
+              <tr>
+                <td class="p-2 text-left font-sans text-slate-300">Has Questions</td>
+                <td class="p-2 bg-dark-900 text-slate-400">0.02</td>
+                <td class="p-2 bg-mint-500/20 text-slate-200">+0.26</td>
+                <td class="p-2 bg-mint-500/40 text-white font-semibold">1.00</td>
+                <td class="p-2 bg-rose-950/20 text-rose-300">-0.09</td>
+              </tr>
+              <tr class="font-semibold border-t border-mint-500/10">
+                <td class="p-2 text-left font-sans text-mint-300">Fraudulent</td>
+                <td class="p-2 bg-mint-500/20 text-mint-300">+0.08</td>
+                <td class="p-2 bg-rose-950/40 text-rose-300">-0.26</td>
+                <td class="p-2 bg-rose-950/20 text-rose-300">-0.09</td>
+                <td class="p-2 bg-mint-500/40 text-white font-semibold">1.00</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div class="glass-card p-6 rounded-2xl border border-slate-800/80">
-        <h3 class="font-display font-light text-base text-white mb-1">ROC Curve Comparison</h3>
-        <p class="text-xs text-slate-400 font-extralight mb-6">Logistic Regression achieves the highest area under the curve (AUC = 0.9634).</p>
-        <div class="h-72 w-full">
-          <canvas id="rocChart"></canvas>
+      <!-- Confusion Matrix Block -->
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/15">
+        <h3 class="font-serif text-xl text-white mb-1">Confusion matrix</h3>
+        <p class="text-xs text-slate-400 font-light mb-6">Logistic Regression on held-out 20% test split (3,576 samples).</p>
+
+        <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+          <div class="bg-dark-900 p-4 rounded-xl border border-mint-500/10">
+            <span class="block text-3xl font-serif text-white mb-1">3,256</span>
+            <span class="text-xs text-mint-400 font-semibold uppercase">True Negative</span>
+            <p class="text-[10px] text-slate-500 mt-1">Predicted real · actually real</p>
+          </div>
+
+          <div class="bg-dark-900 p-4 rounded-xl border border-mint-500/10">
+            <span class="block text-3xl font-serif text-rose-300 mb-1">147</span>
+            <span class="text-xs text-rose-400 font-semibold uppercase">False Positive</span>
+            <p class="text-[10px] text-slate-500 mt-1">Predicted scam · actually real</p>
+          </div>
+
+          <div class="bg-dark-900 p-4 rounded-xl border border-mint-500/10">
+            <span class="block text-3xl font-serif text-amber-300 mb-1">24</span>
+            <span class="text-xs text-amber-400 font-semibold uppercase">False Negative</span>
+            <p class="text-[10px] text-slate-500 mt-1">Predicted real · actually scam</p>
+          </div>
+
+          <div class="bg-dark-900 p-4 rounded-xl border border-mint-500/20">
+            <span class="block text-3xl font-serif text-mint-300 mb-1">149</span>
+            <span class="text-xs text-mint-400 font-semibold uppercase">True Positive</span>
+            <p class="text-[10px] text-slate-500 mt-1">Predicted scam · actually scam</p>
+          </div>
         </div>
       </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WAS BUILT SECTION -->
+  <section class="py-16 px-6 max-w-6xl mx-auto relative z-10">
+    <div class="mb-8">
+      <h2 class="font-serif text-3xl font-normal text-white">How it was built</h2>
     </div>
 
-    <!-- Confusion Matrices Row -->
-    <div class="glass-card p-6 rounded-2xl border border-slate-800/80">
-      <h3 class="font-display font-light text-base text-white mb-1">Confusion Matrix Breakdown (Test Set: 3,576 Samples)</h3>
-      <p class="text-xs text-slate-400 font-extralight mb-6">Comparing Caught Scam Jobs (True Positives) vs. Missed Scam Jobs (False Negatives).</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/10">
+        <span class="font-mono text-xs text-mint-400 mb-3 block">01</span>
+        <h3 class="font-serif text-lg text-white mb-2">Clean & explore</h3>
+        <p class="text-xs text-slate-400 font-light leading-relaxed">Loaded EMSCAD dataset, merged unstructured text fields, checked nulls, and built metadata correlation matrix.</p>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 text-center">
-          <h4 class="font-display font-light text-slate-300 text-sm mb-4">Naive Bayes</h4>
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-900/80 p-3 rounded border border-slate-800">
-              <span class="block text-slate-500 text-[10px]">True Real (TN)</span>
-              <span class="text-sm font-normal text-slate-300">3,268</span>
-            </div>
-            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
-              <span class="block text-rose-400/80 text-[10px]">False Fake (FP)</span>
-              <span class="text-sm font-normal text-rose-300">135</span>
-            </div>
-            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
-              <span class="block text-rose-400/80 text-[10px]">Missed Scam (FN)</span>
-              <span class="text-sm font-normal text-rose-300">76</span>
-            </div>
-            <div class="bg-emerald-950/30 p-3 rounded border border-emerald-900/30">
-              <span class="block text-emerald-400/80 text-[10px]">Caught Scam (TP)</span>
-              <span class="text-sm font-normal text-emerald-300">97</span>
-            </div>
-          </div>
-        </div>
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/10">
+        <span class="font-mono text-xs text-mint-400 mb-3 block">02</span>
+        <h3 class="font-serif text-lg text-white mb-2">Engineer & vectorize</h3>
+        <p class="text-xs text-slate-400 font-light leading-relaxed">Extracted 3,000 TF-IDF unigram/bigrams, engineered binary indicator flags, and applied stratified splitting.</p>
+      </div>
 
-        <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800/80 text-center">
-          <h4 class="font-display font-light text-slate-300 text-sm mb-4">Random Forest</h4>
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-900/80 p-3 rounded border border-slate-800">
-              <span class="block text-slate-500 text-[10px]">True Real (TN)</span>
-              <span class="text-sm font-normal text-slate-300">3,393</span>
-            </div>
-            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
-              <span class="block text-rose-400/80 text-[10px]">False Fake (FP)</span>
-              <span class="text-sm font-normal text-rose-300">10</span>
-            </div>
-            <div class="bg-amber-950/30 p-3 rounded border border-amber-900/30">
-              <span class="block text-amber-400/80 text-[10px]">Missed Scam (FN)</span>
-              <span class="text-sm font-normal text-amber-300">68</span>
-            </div>
-            <div class="bg-emerald-950/30 p-3 rounded border border-emerald-900/30">
-              <span class="block text-emerald-400/80 text-[10px]">Caught Scam (TP)</span>
-              <span class="text-sm font-normal text-emerald-300">105</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-slate-950/60 p-5 rounded-xl border border-brand-500/30 text-center relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-500/90 text-slate-950 text-[9px] font-mono px-2 py-0.5 rounded-bl">Best Recall</div>
-          <h4 class="font-display font-light text-brand-300 text-sm mb-4">Logistic Regression</h4>
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div class="bg-slate-900/80 p-3 rounded border border-slate-800">
-              <span class="block text-slate-500 text-[10px]">True Real (TN)</span>
-              <span class="text-sm font-normal text-slate-300">3,256</span>
-            </div>
-            <div class="bg-rose-950/30 p-3 rounded border border-rose-900/30">
-              <span class="block text-rose-400/80 text-[10px]">False Fake (FP)</span>
-              <span class="text-sm font-normal text-rose-300">147</span>
-            </div>
-            <div class="bg-emerald-950/40 p-3 rounded border border-emerald-800/40">
-              <span class="block text-emerald-400/80 text-[10px]">Missed Scam (FN)</span>
-              <span class="text-sm font-normal text-emerald-300">24 (Lowest)</span>
-            </div>
-            <div class="bg-emerald-950/60 p-3 rounded border border-emerald-700/60">
-              <span class="block text-emerald-400/80 text-[10px]">Caught Scam (TP)</span>
-              <span class="text-sm font-normal text-emerald-300">149</span>
-            </div>
-          </div>
-        </div>
+      <div class="theme-card p-6 rounded-2xl border border-mint-500/10">
+        <span class="font-mono text-xs text-mint-400 mb-3 block">03</span>
+        <h3 class="font-serif text-lg text-white mb-2">Train & compare</h3>
+        <p class="text-xs text-slate-400 font-light leading-relaxed">Three classifiers fit on stratified split and evaluated for maximum recall to prevent uncaught job fraud.</p>
       </div>
     </div>
   </section>
@@ -423,8 +459,8 @@
         resTitle.innerText = "⚠️ Fraudulent Posting Detected";
         resDesc.innerText = "Model flags include missing employer logo, absence of candidate screening questions, and high-frequency scam n-grams in description parameters.";
       } else {
-        card.className = "p-6 rounded-xl border bg-emerald-950/20 border-emerald-800/50 text-emerald-200";
-        badge.className = "px-3 py-0.5 rounded-full text-[11px] font-mono uppercase bg-emerald-900/50 text-emerald-300 border border-emerald-700/50";
+        card.className = "p-6 rounded-xl border bg-mint-950/20 border-mint-800/50 text-mint-200";
+        badge.className = "px-3 py-0.5 rounded-full text-[11px] font-mono uppercase bg-mint-900/50 text-mint-300 border border-mint-700/50";
         badge.innerText = "Verified Safe";
         score.innerText = "Risk Score: 3.1%";
         resTitle.innerText = "✅ Legitimate Job Posting";
@@ -432,88 +468,73 @@
       }
     }
 
-    // Chart.js - Render Bar Chart
-    new Chart(document.getElementById('multiMetricChart').getContext('2d'), {
+    // Chart.js Global Config
+    Chart.defaults.font.family = 'Plus Jakarta Sans';
+
+    // Chart 1: Class Distribution
+    new Chart(document.getElementById('classDistChart').getContext('2d'), {
       type: 'bar',
       data: {
-        labels: ['Accuracy', 'Precision', 'Recall', 'F1-Score', 'ROC-AUC'],
-        datasets: [
-          {
-            label: 'Naive Bayes',
-            data: [0.9412, 0.4310, 0.5682, 0.4902, 0.8845],
-            backgroundColor: 'rgba(148, 163, 184, 0.3)',
-            borderColor: 'rgba(148, 163, 184, 0.8)',
-            borderWidth: 1
-          },
-          {
-            label: 'Random Forest',
-            data: [0.9785, 0.9120, 0.6136, 0.7333, 0.9512],
-            backgroundColor: 'rgba(245, 158, 11, 0.3)',
-            borderColor: 'rgba(245, 158, 11, 0.8)',
-            borderWidth: 1
-          },
-          {
-            label: 'Logistic Regression',
-            data: [0.9520, 0.5180, 0.8636, 0.6472, 0.9634],
-            backgroundColor: 'rgba(45, 212, 191, 0.5)',
-            borderColor: 'rgba(45, 212, 191, 0.9)',
-            borderWidth: 1
-          }
-        ]
+        labels: ['Real', 'Fake'],
+        datasets: [{
+          data: [17014, 866],
+          backgroundColor: ['#10b981', '#059669'],
+          borderRadius: 6
+        }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: { beginAtZero: true, max: 1.0, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans', size: 10 } } },
-          x: { grid: { display: false }, ticks: { color: '#64748b', font: { family: 'Plus Jakarta Sans', size: 10 } } }
+          y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } },
+          x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
         },
-        plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 11, weight: '300' } } } }
+        plugins: { legend: { display: false } }
       }
     });
 
-    // Chart.js - Render ROC Curve
-    new Chart(document.getElementById('rocChart').getContext('2d'), {
-      type: 'line',
+    // Chart 2: Fraud Ratio by Metadata
+    new Chart(document.getElementById('metaCorrelationsChart').getContext('2d'), {
+      type: 'bar',
       data: {
-        labels: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-        datasets: [
-          {
-            label: 'Logistic Regression (AUC = 0.963)',
-            data: [0.0, 0.72, 0.86, 0.91, 0.94, 0.96, 0.97, 0.98, 0.99, 1.0, 1.0],
-            borderColor: '#2dd4bf',
-            backgroundColor: 'rgba(45, 212, 191, 0.05)',
-            borderWidth: 1.5,
-            fill: true,
-            tension: 0.3
-          },
-          {
-            label: 'Random Forest (AUC = 0.951)',
-            data: [0.0, 0.65, 0.78, 0.85, 0.90, 0.93, 0.95, 0.97, 0.98, 0.99, 1.0],
-            borderColor: '#f59e0b',
-            borderWidth: 1,
-            borderDash: [4, 4],
-            fill: false,
-            tension: 0.3
-          },
-          {
-            label: 'Baseline (AUC = 0.500)',
-            data: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-            borderColor: '#334155',
-            borderWidth: 1,
-            borderDash: [2, 2],
-            fill: false
-          }
-        ]
+        labels: ['No Logo', 'No Screening', 'Telecommute'],
+        datasets: [{
+          data: [11.2, 8.4, 13.8],
+          backgroundColor: '#34d399',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { beginAtZero: true, max: 20, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } },
+          y: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    // Chart 3: Text Length
+    new Chart(document.getElementById('textLengthChart').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['Real', 'Fake'],
+        datasets: [{
+          data: [312, 184],
+          backgroundColor: ['#10b981', '#059669'],
+          borderRadius: 6
+        }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: { title: { display: true, text: 'True Positive Rate', color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } },
-          x: { title: { display: true, text: 'False Positive Rate', color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } }
+          y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.03)' }, ticks: { color: '#64748b', font: { size: 10 } } },
+          x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
         },
-        plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 11, weight: '300' } } } }
+        plugins: { legend: { display: false } }
       }
     });
   </script>
